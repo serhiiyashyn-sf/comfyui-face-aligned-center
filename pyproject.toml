@@ -1,0 +1,14 @@
+[project]
+name = "comfyui-face-aligned-center"
+description = "Batch-aware character centering for ComfyUI. Given a character sheet (multiple angles), scales every image so the face ends up at the same size and canvas position — including back-view angles, via a silhouette fallback tied to the batch's face scale."
+version = "1.0.0"
+license = { file = "LICENSE" }
+dependencies = ["numpy", "torch"]
+
+[project.urls]
+Repository = "https://github.com/serhiiyashyn-sf/comfyui-face-aligned-center"
+
+[tool.comfy]
+PublisherId = "serhiiyashyn-sf"
+DisplayName = "Face-Aligned Center"
+Icon = ""
