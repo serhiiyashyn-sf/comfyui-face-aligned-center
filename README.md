@@ -28,9 +28,9 @@ comes out with the face at the **same size and the same canvas position**
 No face-detection model required — the silhouette head-cx is stable even
 on back views where a face detector would fail.
 
-## Node
+## Nodes
 
-**Face-Aligned Center**
+### Face-Aligned Center
 
 Inputs:
 - `images` (IMAGE batch) — the character sheet frames
@@ -48,6 +48,24 @@ Outputs:
 - `masks` (MASK batch) — the foreground mask after scaling/translation.
 - `info` (STRING) — diagnostic: batch scale + per-image detected head
   coordinates.
+
+### Face-Aligned Fine-Tune
+
+Manual per-image adjustment on top of the auto-aligned output. Interactive
+canvas preview with zoom / nudge buttons — all changes render client-side
+(no workflow queue triggered per click), so iteration is instant. A
+toggleable grid overlay (crosshair + diagonals + safe-box) helps verify
+alignment. The overlay is view-only and never reaches the clean IMAGE
+output.
+
+Inputs:
+- `images` (IMAGE batch) — typically from Face-Aligned Center.
+- `zoom` / `dx` / `dy` — driven by the `+ −` and `← ↑ ↓ →` buttons.
+  Auto-reset when a new batch of images flows in, so a pipeline running
+  many times never applies stale adjustments to a fresh character.
+
+Outputs:
+- `images` (IMAGE batch) — zoom + translate applied, no grid baked in.
 
 ## Installation
 
