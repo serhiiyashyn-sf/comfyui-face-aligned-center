@@ -49,6 +49,23 @@ Outputs:
 - `info` (STRING) — diagnostic: batch scale + per-image detected head
   coordinates.
 
+### Anime Face Detect & Crop
+
+Detect an anime/chibi face using `lbpcascade_animeface` (OpenCV Haar
+cascade, ~2MB, CPU-only, auto-downloaded on first use) and output a
+cropped face image plus a rectangle mask at the original image
+dimensions. Useful for ID/reference extraction and inpainting masks.
+
+Inputs:
+- `images` (IMAGE batch)
+- `crop_size` (INT, default 512) — output square crop size.
+- `padding` (FLOAT, default 0.3) — extra margin around the bbox.
+
+Outputs:
+- `cropped_images` (IMAGE batch) — square face crop at `crop_size`. Falls
+  back to a center crop if detection fails.
+- `face_masks` (MASK batch) — rectangle at the original image dimensions.
+
 ### Face-Aligned Fine-Tune
 
 Manual per-image adjustment on top of the auto-aligned output. Interactive
